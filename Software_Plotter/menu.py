@@ -1,7 +1,8 @@
 from measurement import Measurement
+from visualization import Visulization
 
 import tkinter as tk
-from tkinter import ttk, messagebox
+from tkinter import ttk, messagebox, filedialog
 import serial.tools.list_ports
 
 class Menu:
@@ -75,4 +76,10 @@ class Menu:
         Measurement(selected_port, scale)  # otwórz nowe okno
 
     def load_measurement(self):
-        messagebox.showinfo("Wczytywanie", "Tutaj w przyszłości będzie wczytywanie pomiarów z pliku")
+        filename = filedialog.askopenfilename(
+            title="Wybierz plik txt z pomiarami",
+            filetypes=(("Pliki tekstowe", "*.txt"), ("Wszystkie pliki", "*.*"))
+            )
+        if filename:
+            self.root.destroy()  # zamknij okno menu
+            Visulization(filename)
