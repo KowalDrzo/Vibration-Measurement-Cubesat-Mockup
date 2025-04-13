@@ -1,9 +1,10 @@
 from measurement import Measurement
+from version import VERSION
 from visualization import Visulization
 
-import tkinter as tk
 from tkinter import ttk, messagebox, filedialog
 import serial.tools.list_ports
+import tkinter as tk
 
 class Menu:
 
@@ -11,6 +12,7 @@ class Menu:
     ADXL_CONSTANT = 0.647
 
     def __init__(self, root):
+
         self.root = root
         self.root.title("Menu pomiarowe")
         self.root.minsize(400, 300)  # Minimalny rozmiar
@@ -55,9 +57,12 @@ class Menu:
         self.load_button = ttk.Button(self.main_frame, text="Wczytaj pomiar - wyświetl FFT", command=self.load_measurement)
         self.load_button.grid(row=5, column=0, columnspan=2, pady=5, sticky="ew")
 
+        ttk.Label(self.main_frame, text=f"Wersja: {VERSION}").grid(row=6, column=0, columnspan=2, sticky="w", pady=(10, 0))
+
         self.refresh_ports()
 
     def refresh_ports(self):
+
         ports = serial.tools.list_ports.comports()
         port_list = [port.device for port in ports]
         self.port_combo['values'] = port_list
@@ -67,6 +72,7 @@ class Menu:
             self.port_combo.set('')
 
     def start_new_measurement(self):
+
         selected_port = self.serial_port.get()
         scale = self.scale_factor.get()
         if not selected_port:
@@ -76,6 +82,7 @@ class Menu:
         Measurement(selected_port, scale)  # otwórz nowe okno
 
     def load_measurement(self):
+
         filename = filedialog.askopenfilename(
             title="Wybierz plik txt z pomiarami",
             filetypes=(("Pliki tekstowe", "*.txt"), ("Wszystkie pliki", "*.*"))

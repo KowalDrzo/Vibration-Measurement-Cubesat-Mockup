@@ -1,14 +1,16 @@
 from visualization import Visulization
 
-import tkinter as tk
+from datetime import datetime
 from tkinter import ttk
 import serial
-import time
 import threading
-from datetime import datetime
+import time
+import tkinter as tk
 
 class Measurement:
+
     def __init__(self, port, scale):
+
         self.port_name = port
         self.scale = scale
         self.root = tk.Tk()
@@ -35,6 +37,7 @@ class Measurement:
         self.root.mainloop()
 
     def read_serial_loop(self):
+
         with open(self.filename, "a") as file:
             while self.running:
                 data = self.ser.read(30000)
@@ -54,6 +57,7 @@ class Measurement:
         return
 
     def stop_measurement(self):
+
         self.running = False
         time.sleep(0.1)
         self.root.destroy()  # zamknij okno pomiarów
