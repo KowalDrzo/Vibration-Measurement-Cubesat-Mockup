@@ -25,7 +25,10 @@ Code Repository for the mockup of Vibration Measurement Cubesat. User interfaces
 
 ## Images
 
-TODO
+![Front view](docs/img_front.jpg)
+![Right view](docs/img_right.jpg)
+![Back view](docs/img_back.jpg)
+![Left view](docs/img_left.jpg)
 
 ## Screenshots
 
